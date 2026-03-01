@@ -1,0 +1,335 @@
+﻿/* ============================================
+   FONT FACES
+   ============================================ */
+@font-face {
+    font-family: 'Kallina';
+    src: url('fonts/KallinaCondenseddemoRegular-vnDq7.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Compress';
+    src: url('fonts/compress.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --fg-muted: #888888;
+    --accent: #000000;
+    --border: #f0f0f0;
+    --selection: rgba(0, 0, 0, 0.05);
+    --font-heading: 'Kallina', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
+
+::selection {
+    background: var(--selection);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+/* ============================================
+   UI ELEMENTS
+   ============================================ */
+.noise {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 2.5rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--fg);
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: var(--fg);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.5;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 18vw, 15rem);
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    margin-left: -0.05em;
+}
+
+.hero-title span {
+    display: block;
+}
+
+.hero-tagline {
+    font-size: 1.1rem;
+    color: var(--fg-muted);
+    max-width: 500px;
+    margin-top: 4rem;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+}
+
+/* ============================================
+   PROJECTS
+   ============================================ */
+.projects {
+    padding: 15rem 0;
+}
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding: 6rem 0;
+}
+
+.project-item:last-child {
+    border-bottom: 1px solid var(--border);
+}
+
+.project-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--fg-muted);
+}
+
+.project-info h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+}
+
+.project-info p {
+    color: var(--fg-muted);
+    font-size: 1.1rem;
+    max-width: 480px;
+    margin-bottom: 3rem;
+}
+
+.project-meta {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: flex;
+    gap: 2.5rem;
+    font-weight: 600;
+}
+
+.project-visual {
+    width: 100%;
+    aspect-ratio: 1.4/1;
+    background: #f7f7f7;
+    overflow: hidden;
+}
+
+.project-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) brightness(1.05);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-item:hover .project-visual img {
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.05);
+}
+
+/* ============================================
+   ABOUT
+   ============================================ */
+.about {
+    padding: 10rem 0 20rem;
+}
+
+.about-text {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    max-width: 1000px;
+}
+
+.about-text p {
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    padding-bottom: 8rem;
+}
+
+.footer-content {
+    border-top: 1px solid var(--fg);
+    padding-top: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer-big {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.8;
+    text-transform: uppercase;
+    letter-spacing: -0.06em;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: right;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--fg);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    opacity: 0.5;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .project-item {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .project-visual {
+        order: -1;
+    }
+
+    .hero-title {
+        font-size: 22vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4rem;
+    }
+
+    .footer-links {
+        text-align: left;
+    }
+
+    .about-text {
+        font-size: 1.5rem;
+    }
+}
